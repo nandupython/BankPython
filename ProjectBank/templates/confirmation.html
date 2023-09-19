@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation</title>
+</head>
+<body>
+    <h2>{{ message }}</h2>  <!-- Display the message passed from the view -->
+    <a href="{% url 'demo' %}">Return to Home Page</a>  <!-- Link to return to the home page -->
+</body>
+</html>
+{% endblock %}
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+<!--</html>-->

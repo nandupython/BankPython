@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<h1>Login Here</h1><br>
+<form action="login" method="post">
+  {% csrf_token %}
+  <input type="text" name="username" placeholder="Enter your User Name"><br><br>
+  <input type="password" name="password" placeholder="Enter your Password"><br><br>
+  <input type="submit"><br><br>
+    <div class="register-link">
+        Don't have an account? <a href="{% url 'register' %}">Register here</a>
+    </div>
+</form>
+</body>
+</html>
+{% endblock %}

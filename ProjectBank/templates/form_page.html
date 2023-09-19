@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<button id="showFormBtn">Form</button>
+
+<div id="applicationForm" style="display:none;">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+        <button type="button" onclick="location.href='{% url 'logout' %}';">Logout</button>
+
+
+    </form>
+</div>
+
+<script>
+    document.getElementById('showFormBtn').addEventListener('click', function() {
+        document.getElementById('applicationForm').style.display = 'block';
+    });
+    // You will also need to add JavaScript to handle the dependent dropdown for districts and branches.
+</script>
+<script>
+    const districtDropdown = document.getElementById("id_district");  // Assuming the dropdown has this ID
+const branchDropdown = document.getElementById("id_branch");
+
+districtDropdown.addEventListener('change', function() {
+    // Clear out the current options in the branch dropdown
+    branchDropdown.innerHTML = "";
+
+    // Fetch branches based on the selected district
+    fetch(`/branches/${this.value}/`)
+        .then(response => response.json())
+        .then(data => {
+            // Populate branch dropdown with new options
+            data.forEach(branch => {
+                const option = document.createElement("option");
+                option.value = branch.id;
+                option.text = branch.name;
+                branchDropdown.appendChild(option);
+            });
+        });
+});
+
+</script>
+{% endblock %}
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+<!--</html>-->
